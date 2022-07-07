@@ -1,15 +1,14 @@
 import numpy as np
 import numpy.linalg as npla
 import matplotlib.pyplot as plt
-from matplotlib import cm
 import cv2
 
 from mpl_toolkits.mplot3d import axes3d
 
 
-def compressImage(cf):
+def compress(cf):
     # Read the image from a .jpg file and get just the black intensity of each pixel
-    img = plt.imread('apples.jpg')
+    img = plt.imread('Leaf.jpg')
 
 
     M = np.float64(img[:,:,0])
@@ -32,18 +31,18 @@ def compressImage(cf):
    
     # plot the original image in matrix M
     plt.figure(1,figsize=(10,10))
-    plt.imshow(M)
-    plt.title('original image')
+    plt.imshow(M, cmap = "gray")
+    plt.title('Original Image')
     # plot the compressed image in matrix Mk
     plt.figure(2,figsize=(10,10))
-    plt.imshow(Mk)
-    plt.title('compressed image, compression factor %d' % cf)
+    plt.imshow(Mk, cmap = "gray")
+    plt.title('Compressed Image')
     plt.show()
+
     print("Sucessfully created both windows.")
 
 
 def main(): 
-    compressImage(2.5)
-
+    compress(5)
 
 main()
