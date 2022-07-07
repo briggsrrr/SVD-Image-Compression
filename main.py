@@ -7,25 +7,19 @@ from mpl_toolkits.mplot3d import axes3d
 
 
 def compress(cf):
-    # Read the image from a .jpg file and get just the black intensity of each pixel
     img = plt.imread('Leaf.jpg')
-
-
     M = np.float64(img[:,:,0])
-    nrows, ncols = M.shape
- 
+    r, c = M.shape
+
     U, sigma, Vt = npla.svd(M, full_matrices=False)
-    
-    nrows, ncols = M.shape
-    Mstorage = nrows*ncols
- 
-    k = Mstorage/(cf*(nrows+ncols))
-    
-    Mstorage = nrows*ncols
-    Mkstorage = k * (nrows+ncols)
+    r, c = M.shape
+    Mtemp = r*c
+    j = Mtemp/(cf*(r+c))
+    Mtemp = r*c
+    Mkstorage = j * (r+c)
     
     Mk = np.zeros(M.shape)
-    for i in range(round(k)):
+    for i in range(round(j)):
         Mk += sigma[i] * np.outer(U[:,i], Vt[i,:])
     
    
