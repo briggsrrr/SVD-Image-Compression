@@ -37,6 +37,6 @@ def compress(cf):
 
 
 def main(): 
-    compress(5)
+    compress(15)
 
 main()
